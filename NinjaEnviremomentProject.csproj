@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44387377-FCA2-495F-89D1-B7965E67142F}</ProjectGuid>
+    <ProjectGuid>{770C8821-E908-4CC6-8C0C-B63D2246CCB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NinjaEnviremoment</RootNamespace>

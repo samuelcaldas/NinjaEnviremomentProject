@@ -2,6 +2,7 @@
 using NinjaTrader.Cbi;
 using NinjaTrader.NinjaScript;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 #endregion
 
@@ -9,10 +10,11 @@ namespace NinjaEnviremoment
 {
     class NinjaEnviremoment
     {
-        #region
+        #region Variables
         private NinjaTrader.Cbi.Account     account { get; set; }
         private NinjaTrader.Cbi.Instrument  instrument { get; set; }
-        private NinjaTrader.Cbi.Order[]     orders;
+
+        private List<NinjaTrader.Cbi.Order> orders;
 
 
         #endregion
@@ -97,49 +99,51 @@ namespace NinjaEnviremoment
         public void MarketData() { }
         #endregion
         #region Order
-        public void CreateOrder()
+        public void CreateOrder(Instrument instrument, OrderAction action, OrderType orderType, OrderEntry orderEntry, TimeInForce timeInForce, int quantity, double limitPrice, double stopPrice, string oco, string name, DateTime gtd, CustomOrder customOrder)
         {
-            orders[0] = account.CreateOrder(
-                instrument,             // Order instrument
-                                        
-                OrderAction.Sell,       // Possible values: 
-                                        //  OrderAction.Buy
-                                        //  OrderAction.BuyToCover
-                                        //  OrderAction.Sell
-                                        //  OrderAction.SellShort
-                                        
-                OrderType.StopMarket,   // Possible values:
-                                        //  OrderType.Limit
-                                        //  OrderType.Market
-                                        //  OrderType.MIT
-                                        //  OrderType.StopMarket
-                                        //  OrderType.StopLimit
+            orders.Add(
+                account.CreateOrder(
+                    instrument,                 // Order instrument
 
-                OrderEntry.Automated,   // Possible values:
-                                        //  OrderEntry.Automated
-                                        //  OrderEntry.Manual
-                                        // Allows setting the tag for orders submitted manually or via automated trading logic
+                    OrderAction.Sell,           // Possible values: 
+                                                //  OrderAction.Buy
+                                                //  OrderAction.BuyToCover
+                                                //  OrderAction.Sell
+                                                //  OrderAction.SellShort
 
-                TimeInForce.Day,        // Possible values:
-                                        //  TimeInForce.Day
-                                        //  TimeInForce.Gtc
-                                        //  TimeInForce.Gtd
-                                        //  TimeInForce.Ioc
-                                        //  TimeInForce.Opg
+                    OrderType.StopMarket,       // Possible values:
+                                                //  OrderType.Limit
+                                                //  OrderType.Market
+                                                //  OrderType.MIT
+                                                //  OrderType.StopMarket
+                                                //  OrderType.StopLimit
 
-                1,                      // Order quantity
+                    OrderEntry.Automated,       // Possible values:
+                                                //  OrderEntry.Automated
+                                                //  OrderEntry.Manual
+                                                // Allows setting the tag for orders submitted manually or via automated trading logic
 
-                0,                      // Order limit price. Use "0" should this parameter be irrelevant for the OrderType being submitted.
+                    TimeInForce.Day,            // Possible values:
+                                                //  TimeInForce.Day
+                                                //  TimeInForce.Gtc
+                                                //  TimeInForce.Gtd
+                                                //  TimeInForce.Ioc
+                                                //  TimeInForce.Opg
 
-                1400,                   // Order stop price.Use "0" should this parameter be irrelevant for the OrderType being submitted.
+                    1,                          // Order quantity
 
-               "myOCO",                 // A string representing the OCO ID used to link OCO orders together
+                    0,                          // Order limit price. Use "0" should this parameter be irrelevant for the OrderType being submitted.
 
-                "stopOrder",            // A string representing the name of the order. Max 50 characters.
+                    1400,                       // Order stop price.Use "0" should this parameter be irrelevant for the OrderType being submitted.
 
-                NinjaTrader.Core.Globals.MaxDate,   // A DateTime value to be used with TimeInForce.Gtd - for all other cases you can pass in Core.Globals.MaxDate
-                
-                null                    // Custom order if it is being used
+                   "myOCO",                     // A string representing the OCO ID used to link OCO orders together
+
+                    "stopOrder",                // A string representing the name of the order. Max 50 characters.
+
+                    NinjaTrader.Core.Globals.MaxDate,   // A DateTime value to be used with TimeInForce.Gtd - for all other cases you can pass in Core.Globals.MaxDate
+
+                    null                        // Custom order if it is being used
+                )
             );
         }
         public void SendOrder()
