@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\NinjaEnviremomentProject\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,6 +45,9 @@
     <Reference Include="NinjaTrader.Gui, Version=8.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\NinjaTrader 8\bin64\NinjaTrader.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="Python.Runtime">
+      <HintPath>C:\Program Files (x86)\NinjaTrader 8\bin64\Python.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
